@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} {{current_post.title}} {% endblock %}
+
+
+
+    {% block content %}
+  <h1>{{current_post.title}}</h1>
+
+  <p>{{current_post.content}}</p>
+
+  <p>By <i>{{current_post.user.get_full_name()}}</i></p>
+
+  <p><b>Tags:</b>
+    {%for tag in current_post.tags%}
+    <a href="/tags/{{tag.id}}"><i class="tag">{{tag.name}}</i></a>
+    {%endfor%}
+  </p>
+
+  <a href="/user/{{current_post.user_id}}"><button type="button" name="button">Back</button></a>
+  <a href="/posts/{{current_post.id}}/edit"><button type="button" name="button">Edit</button></a>
+  <a href="/posts/{{current_post.id}}/delete"><button type="button" name="button">Delete</button></a>
+
+    {% endblock %}

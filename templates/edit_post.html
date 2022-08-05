@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+
+{%block title%}Edit post{%endblock%}
+
+
+
+    {%block content%}
+    <h1>Edit post</h1>
+    <form class="create_post_form" action="/posts/{{current_post.id}}/edit" method="POST">
+      <label>Title<input type="text" name="title" placeholder="{{current_post.title}}"></label>
+      <label>content<input type="text" name="content" placeholder="{{current_post.content}}"></label>
+
+      {%for tag in tags%}
+      <label><input type="checkbox" name="tags" value="{{tag.id}}"{% if tag in current_post.tags%}checked{% endif %}>{{tag.name}}</label>
+      {%endfor%}
+
+
+      <a href="/user/{{current_post.user_id}}"><button type="button" name="button">Cancle</button></a>
+      <button type="submit" name="button">Save</button>
+    </form>
+    {%endblock%}

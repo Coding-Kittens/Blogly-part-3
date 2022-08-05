@@ -1,0 +1,20 @@
+{%extends "base.html"%}
+
+{%block title%}Create post{%endblock%}
+
+
+
+    {%block content%}
+    <h1>Add post for {{current_user.get_full_name()}}</h1>
+    <form class="create_post_form" action="/users/{{current_user.id}}/posts/new" method="POST">
+      <label>Title<input required type="text" name="title"></label>
+      <label>content<input required type="text" name="content"></label>
+
+      {%for tag in tags%}
+      <label><input type="checkbox" name="tags" value="{{tag.id}}">{{tag.name}}</label>
+      {%endfor%}
+
+      <a href="/user/{{current_user.id}}"><button type="button" name="button">Cancle</button></a>
+      <button type="submit" name="button">Add</button>
+    </form>
+    {%endblock%}
